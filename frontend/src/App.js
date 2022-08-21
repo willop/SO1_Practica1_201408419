@@ -254,7 +254,7 @@ function App() {
             <tbody>
               {data.map((carro) => {
                 return (
-                  <Carro Placa={carro.placa} marca={carro.marca} modelo={carro.modelo} serie={carro.serie} color={carro.color} key={carro._id} />
+                  <Carro Placa={carro.placa} Marca={carro.marca} Modelo={carro.modelo} Serie={carro.serie} Color={carro.color} key={carro._id} />
                 )
               })
               }
