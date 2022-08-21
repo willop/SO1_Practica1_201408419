@@ -19,6 +19,7 @@ function App() {
   const [data, setData]= useState(
     [
       {
+        "_id":"dafsdfasd",
         "placa" : "P513asd",
         "marca" : "Nissan",
         "modelo": "2",
@@ -26,6 +27,7 @@ function App() {
         "color" : "Negro"
       },
       {
+        "_id":"dafsdfahhggsd",
         "placa" : "P3215dds",
         "marca" : "Mit",
         "modelo": "Lancer",
@@ -33,6 +35,7 @@ function App() {
         "color" : "Azul"
       },
       {
+        "_id":"dafsdfasasdd",
         "placa" : "P151sdf",
         "marca" : "Mercedez",
         "modelo": "amg",
@@ -44,6 +47,33 @@ function App() {
 
 
   //metodos
+    const Reader = require = async(event) =>{
+      try {
+        let configuracion = {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        }
+        let respuesta = await fetch('http://localhost:4000/read', configuracion)
+        //let respuesta = await fetch('http://18.208.114.136:5000/editaralbum', configuracion)
+        let json = await respuesta.json();
+        console.log('valor de la respuesta json READ')
+        console.log(json)
+        //console.log("mostrando el vector de respuesta:\n", json.respuesta)
+        setData(json)
+        
+        console.log("Imprimiendo la var data")
+        console.log(data)
+        //console.log("Mostrando los albumes almacenados",albumes)
+    } catch (error) {
+    }
+    };
+
+
+
+
 
   //actualizar los valores de las variables
   const handleuserchange = (evt) =>{
@@ -79,7 +109,7 @@ function App() {
             </Navbar.Brand>
             <Nav className="me-auto">
               <Nav.Link onClick={() => setShowForm(!showForm)}>Create</Nav.Link>
-              <Nav.Link >Read</Nav.Link>
+              <Nav.Link onClick={Reader}>Read</Nav.Link>
             </Nav>
             <Nav >
               <NavDropdown title={filtro} text ={filtro} id="collasible-nav-dropdown">
@@ -143,7 +173,7 @@ function App() {
             <tbody>
               {data.map((carro)=>{
                 return(
-                  <Carro placa={carro.placa} marca={carro.marca} modelo={carro.modelo} serie={carro.serie} color={carro.color} key={carro.serie}/>
+                  <Carro placa={carro.placa} marca={carro.marca} modelo={carro.modelo} serie={carro.serie} color={carro.color} key={carro._id}/>
                 )
               })
             }
