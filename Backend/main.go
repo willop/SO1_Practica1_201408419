@@ -237,6 +237,7 @@ func DeleteCarr(w http.ResponseWriter, r *http.Request) {
 }
 
 func Filterfunc(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
 	fmt.Println("Se obtubo: ")
 	var filtrar Filter
 	reqBody, _ := ioutil.ReadAll(r.Body)
@@ -253,15 +254,26 @@ func Filterfunc(w http.ResponseWriter, r *http.Request) {
 
 	col := client.Database("PracticaSO1").Collection("Carros")
 
-	var result bson.M
+	//var result bson.M
 	filtrocompuesto := bson.D{{filtrar.Tipofiltro, filtrar.Filtro}}
 	// check for errors in the finding
-	if err = col.FindOne(context.TODO(), filtrocompuesto).Decode(&result); err != nil {
+	/*if err = col.Find(context.TODO(), filtrocompuesto).Decode(&result); err != nil {
+		panic(err)
+	}*/
+
+	filterCursor, err := col.Find(context.TODO(), filtrocompuesto)
+	if err != nil {
 		panic(err)
 	}
-	fmt.Println("Filtro realizado ", result)
 
-	json.NewEncoder(w).Encode(result)
+	var carrosfiltrados []bson.M
+	if err = filterCursor.All(context.TODO(), &carrosfiltrados); err != nil {
+		log.Fatal(err)
+	}
+
+	fmt.Println("Filtro realizado ", carrosfiltrados)
+
+	json.NewEncoder(w).Encode(carrosfiltrados)
 
 }
 
