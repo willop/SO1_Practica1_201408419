@@ -120,7 +120,7 @@ export const Carro = (props) => {
         <td><Form><Form.Control name="Modelo"  onChange={handlenewCar}/></Form></td>
         <td><Form><Form.Control name="Serie"  onChange={handlenewCar}/></Form></td>
         <td><Form><Form.Control name="Color" onChange={handlenewCar}/></Form></td>
-        <td><Button onClick={EditarCarro} >Confirmar</Button></td>
+        <td><Button variant="warning" onClick={EditarCarro} >Confirmar</Button></td>
       </tr>
     )
   }else{
@@ -132,9 +132,8 @@ export const Carro = (props) => {
         <td>{props.Serie}</td>
         <td>{props.Color}</td>
         <td><Button onClick={() => setTipoRetorno(!TipoRetorno)} >Actualizar</Button></td>
-        <td><Button onClick={EliminarCarro}>Eliminar</Button></td>
+        <td><Button variant="danger" onClick={EliminarCarro}>Eliminar</Button></td>
       </tr>
     )
   }
-  
 }

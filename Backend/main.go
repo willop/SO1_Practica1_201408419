@@ -89,7 +89,7 @@ func main() {
 	fmt.Println("Coleccion ", reflect.TypeOf(col), "\n")
 
 	carro1 := Carro{
-		Placa:  "P151sdf",
+		Placa:  "P123abc",
 		Marca:  "Audi",
 		Modelo: "TT",
 		Serie:  "f555610",
@@ -97,14 +97,45 @@ func main() {
 	}
 
 	carro2 := Carro{
-		Placa:  "P8854db",
-		Marca:  "Mitzu",
-		Modelo: "Lancer",
-		Serie:  "f555980",
+		Placa:  "P456eert",
+		Marca:  "Audi",
+		Modelo: "A4",
+		Serie:  "f555480",
 		Color:  "Red",
 	}
 
-	carros := []interface{}{carro1, carro2}
+	carro3 := Carro{
+		Placa:  "P123jkl",
+		Marca:  "Porche",
+		Modelo: "Carrera",
+		Serie:  "f8741",
+		Color:  "Blue",
+	}
+
+	carro4 := Carro{
+		Placa:  "P8854db",
+		Marca:  "Porche",
+		Modelo: "Carrera",
+		Serie:  "f555980",
+		Color:  "Red",
+	}
+	carro5 := Carro{
+		Placa:  "p456uio",
+		Marca:  "Toyota",
+		Modelo: "Corola",
+		Serie:  "f84130",
+		Color:  "Blue",
+	}
+
+	carro6 := Carro{
+		Placa:  "P8854db",
+		Marca:  "Toyota",
+		Modelo: "Corola",
+		Serie:  "f572650",
+		Color:  "Blue",
+	}
+
+	carros := []interface{}{carro1, carro2, carro3, carro4, carro5, carro6}
 
 	result, insertErr := col.InsertMany(ctx, carros)
 	if insertErr != nil {
