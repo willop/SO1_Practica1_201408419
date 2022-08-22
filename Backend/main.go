@@ -17,6 +17,7 @@ import (
 
 	"github.com/gorilla/handlers" //go get -u github.com/gorilla/handlers
 	"github.com/gorilla/mux"      //go get -u github.com/gorilla/mux
+	"github.com/joho/godotenv"    //go get -u github.com/joho/god
 
 	//go get go.mongodb.org/mongo-driver
 	"go.mongodb.org/mongo-driver/bson"
@@ -56,7 +57,10 @@ type Filter struct {
 
 func main() {
 	fmt.Println("Servidor de GO execute \nPort:4000\n...")
+	//loadEnv()
 
+	urll := os.Getenv("URL_DB")
+	fmt.Println(urll)
 	//-------------------------------Inicio del servidor------------------
 	router := mux.NewRouter()
 	headers := handlers.AllowedHeaders([]string{"X-Requested-With", "Content-Type", "Autorization"})
@@ -95,7 +99,6 @@ func main() {
 		Serie:  "f555610",
 		Color:  "Blue",
 	}
-
 	carro2 := Carro{
 		Placa:  "P456eert",
 		Marca:  "Audi",
@@ -103,7 +106,6 @@ func main() {
 		Serie:  "f555480",
 		Color:  "Red",
 	}
-
 	carro3 := Carro{
 		Placa:  "P123jkl",
 		Marca:  "Porche",
@@ -111,7 +113,6 @@ func main() {
 		Serie:  "f8741",
 		Color:  "Blue",
 	}
-
 	carro4 := Carro{
 		Placa:  "P8854db",
 		Marca:  "Porche",
@@ -126,7 +127,6 @@ func main() {
 		Serie:  "f84130",
 		Color:  "Blue",
 	}
-
 	carro6 := Carro{
 		Placa:  "P8854db",
 		Marca:  "Toyota",
@@ -153,6 +153,13 @@ func main() {
 	//------------------------------ servidor ------------------------------------
 	log.Fatal(http.ListenAndServe(":4000", handlers.CORS(headers, methods, origins)(router)))
 
+}
+
+func loadEnv() {
+	err := godotenv.Load()
+	if err != nil {
+		log.Fatal(err)
+	}
 }
 
 // Consulta get informacion
