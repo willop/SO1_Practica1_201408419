@@ -1,3 +1,4 @@
 npx create-react-app frontend
 npm install react-bootstrap bootstrap
 npm install sweetalert2
+npm install dotenv
