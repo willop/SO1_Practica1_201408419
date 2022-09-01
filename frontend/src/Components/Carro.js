@@ -43,7 +43,7 @@ export const Carro = (props) => {
         },
         body: JSON.stringify(Eliminado)
       }
-      let respuesta = await fetch('http://backend/deletecar', configuracion)
+      let respuesta = await fetch('http://localhost:4000/deletecar', configuracion)
       //let respuesta = await fetch('http://18.208.114.136:5000/nuevousuario', configuracion)
       let json = await respuesta.json();
       //console.log('valor de la respuesta json')
@@ -83,7 +83,7 @@ export const Carro = (props) => {
         },
         body: JSON.stringify(EditCar)
       }
-      let respuesta = await fetch('http://backend/setauto', configuracion)
+      let respuesta = await fetch('http://localhost:4000/setauto', configuracion)
       //let respuesta = await fetch('http://18.208.114.136:5000/nuevousuario', configuracion)
       let json = await respuesta.json();
       //console.log('valor de la respuesta json')
