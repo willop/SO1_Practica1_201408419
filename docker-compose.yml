@@ -1,0 +1,43 @@
+version: "3.3"
+services:
+  
+  backend: 
+    container_name: "backend"
+    image: willop/backend_p1_201408419:funcional
+    depends_on:
+      - db
+    ports:
+      - 4000:4000
+    environment:
+      - URL_DB=mongodb://db:27017
+    networks:
+      - practicaso1    
+  
+  front: 
+    container_name: "front"
+    image: willop/frontend_p1_201408419:funcional
+    depends_on:
+      - backend
+      - db
+    ports:
+      - 3000:80
+    env_file: .env
+    environment:
+      - REACT_APP_RED=http://localhost:4000
+    networks:
+      - practicaso1
+  
+  db: 
+    container_name: "db"
+    image: mongo
+    restart: always
+    volumes:
+      - ./data/mongo:/data/db
+    ports:
+      - 27017:27017
+    networks:
+      - practicaso1 
+
+networks:
+  practicaso1:
+    driver: bridge
