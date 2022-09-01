@@ -56,7 +56,7 @@ function App() {
 
   //-------------------------------------   API READ --------------------------------------------
   const Reader = require = async (event) => {
-    console.log("entorno: backend/read")
+    console.log('variable de entorno http://localhost:4000/read')
     try {
       let configuracion = {
         method: 'GET',
@@ -65,8 +65,7 @@ function App() {
           'Content-Type': 'application/json'
         }
       }
-      
-      let respuesta = await fetch('http://backend/read', configuracion)
+      let respuesta = await fetch('http://localhost:4000/read', configuracion)
       //let respuesta = await fetch('http://18.208.114.136:5000/editaralbum', configuracion)
       let json = await respuesta.json();
       console.log('valor de la respuesta json READ')
@@ -94,7 +93,7 @@ function App() {
         },
         body: JSON.stringify(newCar)
       }
-      let respuesta = await fetch('http://backend/setauto', configuracion)
+      let respuesta = await fetch('http://localhost:4000/setauto', configuracion)
       //let respuesta = await fetch('http://18.208.114.136:5000/nuevousuario', configuracion)
       let json = await respuesta.json();
       //console.log('valor de la respuesta json')
@@ -134,7 +133,7 @@ function App() {
         body: JSON.stringify(filtro)
       }
       //process.env.REACT_APP_BACK
-      let respuesta = await fetch('backend/filter', configuracion)
+      let respuesta = await fetch('http://localhost:4000/filter', configuracion)
       //let respuesta = await fetch('http://18.208.114.136:5000/nuevousuario', configuracion)
       let json = await respuesta.json();
       //console.log('valor de la respuesta json')
